@@ -45,16 +45,6 @@ class _ScrollableCodeSelectorState extends State<ScrollableCodeSelector> {
   final accomplishmentsLength = Accomplishment.fetchAll().length;
   final accomplishments = Accomplishment.fetchAll();
 
-  void _ChangeAccomplishment(int i) {
-    var accomplishment = accomplishments[i];
-    setState(
-      () {
-        print('changeaccomplishment state $i ${accomplishment.name}');
-      },
-    );
-    CodeDisplayWidget(index: i);
-  }
-
   @override
   Widget build(BuildContext context) {
     var accomplishment = accomplishments.first;
@@ -80,12 +70,13 @@ class _ScrollableCodeSelectorState extends State<ScrollableCodeSelector> {
                           MaterialStateProperty.all<Color>(Colors.blueGrey)),
                   onPressed: () {
                     setState(() {
-                      _ChangeAccomplishment(index);
+                      accomplishment = accomplishments[index];
+                      CodeDisplayWidget(index: ,);
                     });
                     selected = index;
                     //_ChangeAccomplishment(index);
 
-                    print(accomplishment.imagePath);
+                    print(accomplishments[index].getImagePath);
                   },
                   child: Container(
                     height: 1 / 9 * MediaQuery.of(context).size.height,
@@ -116,11 +107,11 @@ class CodeDisplayWidget extends StatefulWidget {
 
 class _CodeDisplayWidgetState extends State<CodeDisplayWidget> {
   final accomplishments = Accomplishment.fetchAll();
-  String _selectImage(int i) {
-    setState(() {
-      print('select image state set heeee');
-    });
-    return accomplishments[i].getImagePath;
+
+  String _SelectImage() {
+    String imgPath = accomplishments[widget.index].getImagePath;
+    setState(() {});
+    return imgPath;
   }
 
   @override
@@ -131,7 +122,7 @@ class _CodeDisplayWidgetState extends State<CodeDisplayWidget> {
     return Expanded(
       child: Container(
         color: Colors.white,
-        child: Image.asset(_selectImage(widget.index)),
+        child: Image.asset(_SelectImage()),
         // width: MediaQuery.of(context).size.width,
         // height: MediaQuery.of(context).size.height,
       ),
