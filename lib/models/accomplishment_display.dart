@@ -16,7 +16,25 @@ class Accomplishment extends ChangeNotifier {
       Accomplishment(
           'Python Zigzag Conversion',
           'assets/images/PythonZigzagConversion.JPG',
-          [CodeAccomplishment('Python Zigzag Conversion')])
+          [CodeAccomplishment('Python Zigzag Conversion')]),
+      Accomplishment('Python AddTwo', 'assets/images/PythonAddTwo.JPG',
+          [CodeAccomplishment('Python Add Two')]),
+      Accomplishment(
+          'Python Merge Sorted Lists',
+          'assets/images/PythonMergeTwoSortedLists.JPG',
+          [CodeAccomplishment('Python Merge Sorted Lists')]),
+      Accomplishment(
+          'Python Climbing Stairs',
+          'assets/images/PythonClimbingStairs.JPG',
+          [CodeAccomplishment('Python Climbing Stairs')]),
+      Accomplishment(
+          'Python Validate Binary Search Tree',
+          'assets/images/PythonValidateBinaryTree.JPG',
+          [CodeAccomplishment('Python Validate Binary Search Tree')]),
+      Accomplishment(
+          'Python Binary Tree Traversal',
+          'assets/images/PythonBinaryTreeTraversal.JPG',
+          [CodeAccomplishment('Python Binary Tree Traversal')]),
     ];
   }
 

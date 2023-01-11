@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:js_portfolio_flutter/models/accomplishment_display.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 var selected = 0;
+var imgPath;
+
+void main() => runApp(ProviderScope(child: const CodingExperiencePage()));
+
+final imageProvider = StateNotifierProvider((ref) => imgPath);
 
 class CodingExperiencePage extends StatelessWidget {
   const CodingExperiencePage({super.key});
@@ -19,12 +22,12 @@ class CodingExperiencePage extends StatelessWidget {
               onPressed: (() {
                 Navigator.of(context).pop();
               }),
-              icon: Icon(Icons.arrow_back_rounded))),
+              icon: const Icon(Icons.arrow_back_rounded))),
       backgroundColor: Colors.blueGrey,
       body: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          ScrollableCodeSelector(),
+          const ScrollableCodeSelector(),
           CodeDisplayWidget(
             index: selected,
           )
@@ -61,7 +64,7 @@ class _ScrollableCodeSelectorState extends State<ScrollableCodeSelector> {
                 return TextButton(
                   style: ButtonStyle(
                       shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                          side: BorderSide(
+                          side: const BorderSide(
                               color: Colors.black,
                               width: 1,
                               style: BorderStyle.solid),
@@ -71,11 +74,17 @@ class _ScrollableCodeSelectorState extends State<ScrollableCodeSelector> {
                   onPressed: () {
                     setState(() {
                       accomplishment = accomplishments[index];
-                      CodeDisplayWidget(index: ,);
+                      CodeDisplayWidget(
+                        index: index,
+                      );
                     });
                     selected = index;
                     //_ChangeAccomplishment(index);
-
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (BuildContext context) =>
+                                const CodingExperiencePage()));
                     print(accomplishments[index].getImagePath);
                   },
                   child: Container(
@@ -84,7 +93,7 @@ class _ScrollableCodeSelectorState extends State<ScrollableCodeSelector> {
                     color: Colors.white10,
                     child: Text(
                       accomplishments[index].name,
-                      style: TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Colors.white),
                     ),
                   ),
                 );
