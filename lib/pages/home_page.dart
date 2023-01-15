@@ -1,4 +1,5 @@
 //import 'dart:html';
+import 'package:animated_background/animated_background.dart';
 import 'package:flutter/material.dart';
 import 'package:js_portfolio_flutter/pages/resume_page.dart';
 import 'package:js_portfolio_flutter/pages/coding_experience_page.dart';
@@ -12,13 +13,8 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.blue,
-      body: Container(
-        width: MediaQuery.of(context).size.width,
-        decoration: const BoxDecoration(
-            image: DecorationImage(
-                fit: BoxFit.cover,
-                image: AssetImage('assets/images/library_background.jpg'))),
-        child: Column(
+      body: AnimatedHomeBackground(
+        w: Column(
           children: [
             Container(
               height: 1 / 10 * MediaQuery.of(context).size.height,
@@ -192,6 +188,40 @@ class CodingExperienceBookWidget extends StatelessWidget {
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class AnimatedHomeBackground extends StatefulWidget {
+  final Widget w;
+  const AnimatedHomeBackground({super.key, required this.w});
+
+  @override
+  State<AnimatedHomeBackground> createState() => _AnimatedHomeBackgroundState();
+}
+
+class _AnimatedHomeBackgroundState extends State<AnimatedHomeBackground>
+    with TickerProviderStateMixin {
+  ParticleOptions particles = const ParticleOptions(
+      baseColor: Colors.white,
+      spawnOpacity: 0.0,
+      opacityChangeRate: 0.25,
+      minOpacity: 0.1,
+      maxOpacity: 0.6,
+      particleCount: 70,
+      spawnMaxRadius: 15.0,
+      spawnMaxSpeed: 100.0,
+      spawnMinSpeed: 30,
+      spawnMinRadius: 5.0);
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.black,
+      child: AnimatedBackground(
+        behaviour: RandomParticleBehaviour(options: particles),
+        vsync: this,
+        child: widget.w,
       ),
     );
   }

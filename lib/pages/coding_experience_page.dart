@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:js_portfolio_flutter/models/accomplishment_display.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:animated_background/animated_background.dart';
 
 var selected = 0;
 var imgPath;
@@ -24,14 +25,16 @@ class CodingExperiencePage extends StatelessWidget {
               }),
               icon: const Icon(Icons.arrow_back_rounded))),
       backgroundColor: Colors.blueGrey,
-      body: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          const ScrollableCodeSelector(),
-          CodeDisplayWidget(
-            index: selected,
-          )
-        ],
+      body: Center(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            const ScrollableCodeSelector(),
+            CodeDisplayWidget(
+              index: selected,
+            )
+          ],
+        ),
       ),
     );
   }
@@ -138,3 +141,4 @@ class _CodeDisplayWidgetState extends State<CodeDisplayWidget> {
     );
   }
 }
+
