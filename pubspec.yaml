@@ -76,6 +76,7 @@ flutter:
     - assets/images/PythonBinaryTreeTraversal.JPG
     - assets/images/Resume_Rocket.png
     - assets/images/Coding_Rocket.png
+    - assets/images/star.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

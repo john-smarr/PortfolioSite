@@ -108,38 +108,6 @@ class ResumeBookWidget extends StatelessWidget {
         'assets/images/Resume_Rocket.png',
         //width: MediaQuery.of(context).size.width / 3,
       ),
-      // decoration: BoxDecoration(
-      //     color: Colors.blueGrey,
-      //     borderRadius: BorderRadius.circular(20),
-      //     border: Border.all(width: 4)),
-      // alignment: Alignment.centerLeft,
-      // height: MediaQuery.of(context).size.height,
-      // width: 1 / 15 * MediaQuery.of(context).size.width,
-      // child: Center(
-      //   child: RotatedBox(
-      //     quarterTurns: -1,
-      //     child: Container(
-      //       decoration: BoxDecoration(
-      //           borderRadius: BorderRadius.circular(15),
-      //           color: Colors.blueAccent),
-      //       alignment: Alignment.center,
-      //       width: MediaQuery.of(context).size.width,
-      //       height: 1 / 12 * MediaQuery.of(context).size.height,
-      //       child: FittedBox(
-      //         fit: BoxFit.contain,
-      //         child: Text(
-      //           'Resume',
-      //           style: TextStyle(
-      //               fontSize: 35,
-      //               fontStyle: FontStyle.italic,
-      //               color: hoverTextColor,
-      //               letterSpacing: 3),
-      //         ),
-      //       ),
-      //     ),
-      //   ),
-      // ),
-      //);
     );
   }
 }
@@ -156,38 +124,6 @@ class CodingExperienceBookWidget extends StatelessWidget {
       },
       child: Container(
         child: Image.asset('assets/images/Coding_Rocket.png'),
-        // decoration: BoxDecoration(
-        //     color: Colors.blueGrey,
-        //     borderRadius: BorderRadius.circular(20),
-        //     border: Border.all(width: 4)),
-        // alignment: Alignment.centerLeft,
-        // height: MediaQuery.of(context).size.height,
-        // width: 1 / 15 * MediaQuery.of(context).size.width,
-        // child: Center(
-        //   child: RotatedBox(
-        //     quarterTurns: -1,
-        //     child: Container(
-        //       decoration: BoxDecoration(
-        //         color: Colors.purple,
-        //         borderRadius: BorderRadius.circular(15),
-        //       ),
-        //       alignment: Alignment.center,
-        //       width: MediaQuery.of(context).size.width,
-        //       height: 1 / 12 * MediaQuery.of(context).size.height,
-        //       child: FittedBox(
-        //         fit: BoxFit.contain,
-        //         child: const Text(
-        //           'Coding Experience',
-        //           style: TextStyle(
-        //               fontSize: 30,
-        //               fontStyle: FontStyle.italic,
-        //               color: Colors.white,
-        //               letterSpacing: 3),
-        //         ),
-        //       ),
-        //     ),
-        //   ),
-        // ),
       ),
     );
   }
@@ -203,7 +139,8 @@ class AnimatedHomeBackground extends StatefulWidget {
 
 class _AnimatedHomeBackgroundState extends State<AnimatedHomeBackground>
     with TickerProviderStateMixin {
-  ParticleOptions particles = const ParticleOptions(
+  ParticleOptions particles = ParticleOptions(
+      image: Image.asset('assets/images/star.png'),
       baseColor: Colors.white,
       spawnOpacity: 0.0,
       opacityChangeRate: 0.25,
