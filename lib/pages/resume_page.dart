@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_pdfview/flutter_pdfview.dart';
 
 class ResumePage extends StatelessWidget {
   const ResumePage({super.key});
@@ -15,8 +14,16 @@ class ResumePage extends StatelessWidget {
               }),
               icon: Icon(Icons.arrow_back))),
       backgroundColor: Colors.white10,
-      body: Image.asset(
-        'assets/images/Resume.JPG',
+      body: SingleChildScrollView(
+        child: ConstrainedBox(
+          constraints: BoxConstraints(
+              maxHeight: MediaQuery.of(context).size.height,
+              maxWidth: MediaQuery.of(context).size.width),
+          child: Image.asset(
+            'assets/images/Resume.JPG',
+            width: MediaQuery.of(context).size.width,
+          ),
+        ),
       ),
     );
   }
