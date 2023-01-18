@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:js_portfolio_flutter/models/accomplishment_display.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:animated_background/animated_background.dart';
 
 var selected = 0;
 var imgPath;
 
-void main() => runApp(ProviderScope(child: const CodingExperiencePage()));
+void main() => runApp(const ProviderScope(child: CodingExperiencePage()));
 
 final imageProvider = StateNotifierProvider((ref) => imgPath);
 
@@ -15,7 +14,6 @@ class CodingExperiencePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final accomplishments = Accomplishment.fetchAll();
     return Scaffold(
       appBar: AppBar(
           backgroundColor: Colors.white10,
@@ -53,7 +51,6 @@ class _ScrollableCodeSelectorState extends State<ScrollableCodeSelector> {
 
   @override
   Widget build(BuildContext context) {
-    var accomplishment = accomplishments.first;
     return Container(
       color: Colors.white60,
       height: MediaQuery.of(context).size.height,
@@ -76,7 +73,6 @@ class _ScrollableCodeSelectorState extends State<ScrollableCodeSelector> {
                           MaterialStateProperty.all<Color>(Colors.blueGrey)),
                   onPressed: () {
                     setState(() {
-                      accomplishment = accomplishments[index];
                       CodeDisplayWidget(
                         index: index,
                       );
@@ -88,7 +84,6 @@ class _ScrollableCodeSelectorState extends State<ScrollableCodeSelector> {
                         MaterialPageRoute(
                             builder: (BuildContext context) =>
                                 const CodingExperiencePage()));
-                    print(accomplishments[index].getImagePath);
                   },
                   child: Container(
                     height: 1 / 9 * MediaQuery.of(context).size.height,
@@ -120,7 +115,7 @@ class CodeDisplayWidget extends StatefulWidget {
 class _CodeDisplayWidgetState extends State<CodeDisplayWidget> {
   final accomplishments = Accomplishment.fetchAll();
 
-  String _SelectImage() {
+  String _selectImage() {
     String imgPath = accomplishments[widget.index].getImagePath;
     setState(() {});
     return imgPath;
@@ -129,16 +124,14 @@ class _CodeDisplayWidgetState extends State<CodeDisplayWidget> {
   @override
   Widget build(BuildContext context) {
     setState(() {
-      print('SET STATE IN CODEDISPLAYWIDGET');
     });
     return Expanded(
       child: Container(
         color: Colors.white,
-        child: Image.asset(_SelectImage()),
+        child: Image.asset(_selectImage()),
         // width: MediaQuery.of(context).size.width,
         // height: MediaQuery.of(context).size.height,
       ),
     );
   }
 }
-

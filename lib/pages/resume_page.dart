@@ -12,8 +12,8 @@ class ResumePage extends StatelessWidget {
               onPressed: (() {
                 Navigator.of(context).pop();
               }),
-              icon: Icon(Icons.arrow_back))),
-      backgroundColor: Colors.white10,
+              icon: const Icon(Icons.arrow_back))),
+      backgroundColor: Colors.black87,
       body: SingleChildScrollView(
         child: ConstrainedBox(
           constraints: BoxConstraints(

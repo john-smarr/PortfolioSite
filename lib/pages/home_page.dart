@@ -22,7 +22,7 @@ class HomePage extends StatelessWidget {
               //child: const OpeningParagraph(),
             ),
             Padding(
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               child: Container(
                 color: Colors.black,
               ),
@@ -31,7 +31,7 @@ class HomePage extends StatelessWidget {
               height: 1 / 1.5 * MediaQuery.of(context).size.height,
               alignment: Alignment.center,
               color: Colors.transparent,
-              child: BookshelfDesign(),
+              child: const OrientationDesign(),
             )
           ],
         ),
@@ -72,37 +72,64 @@ class QualificationWidget extends StatelessWidget {
   }
 }
 
-class BookshelfDesign extends StatefulWidget {
-  const BookshelfDesign({super.key});
+class OrientationDesign extends StatefulWidget {
+  const OrientationDesign({super.key});
 
   @override
-  State<BookshelfDesign> createState() => _BookshelfDesignState();
+  State<OrientationDesign> createState() => _OrientationDesignState();
 }
 
-class _BookshelfDesignState extends State<BookshelfDesign> {
+class _OrientationDesignState extends State<OrientationDesign> {
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Padding(
-          padding: EdgeInsets.only(left: 8),
-          child: ResumeBookWidget(),
-        ),
-        CodingExperienceBookWidget()
-      ],
-    );
+    if (MediaQuery.of(context).size.width >= 700) {
+      return Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 8),
+            child: ConstrainedBox(
+                constraints: BoxConstraints(
+                    maxWidth: MediaQuery.of(context).size.width / 4),
+                child: const ResumeBookWidget()),
+          ),
+          ConstrainedBox(
+              constraints: BoxConstraints(
+                  maxWidth: MediaQuery.of(context).size.width / 3),
+              child: const CodingExperienceBookWidget())
+        ],
+      );
+    } else {
+      return Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(bottom: 8),
+            child: ConstrainedBox(
+                constraints: BoxConstraints(
+                    maxWidth: MediaQuery.of(context).size.width / 4,
+                    maxHeight: MediaQuery.of(context).size.height / 4),
+                child: const ResumeBookWidget()),
+          ),
+          ConstrainedBox(
+              constraints: BoxConstraints(
+                  maxWidth: MediaQuery.of(context).size.width / 3,
+                  maxHeight: MediaQuery.of(context).size.height / 4),
+              child: const CodingExperienceBookWidget())
+        ],
+      );
+    }
   }
 }
 
 class ResumeBookWidget extends StatelessWidget {
-  ResumeBookWidget({super.key});
+  const ResumeBookWidget({super.key});
   @override
   Widget build(BuildContext context) {
     return TextButton(
       onPressed: () {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => ResumePage()));
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const ResumePage()));
       },
       child: Image.asset(
         'assets/images/Resume_Rocket.png',
@@ -119,12 +146,12 @@ class CodingExperienceBookWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton(
       onPressed: () {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => CodingExperiencePage()));
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => const CodingExperiencePage()));
       },
-      child: Container(
-        child: Image.asset('assets/images/Coding_Rocket.png'),
-      ),
+      child: Image.asset('assets/images/Coding_Rocket.png'),
     );
   }
 }
