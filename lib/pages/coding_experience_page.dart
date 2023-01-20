@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:js_portfolio_flutter/models/accomplishment_display.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:graphql_flutter/graphql_flutter.dart';
 
 var selected = 0;
 var imgPath;
@@ -9,10 +8,17 @@ var imgPath;
 void main() => runApp(const ProviderScope(child: CodingExperiencePage()));
 
 final imageProvider = StateNotifierProvider((ref) => imgPath);
+Color _professionalColor = Colors.grey;
+Color _leetCodeColor = Colors.white;
 
-class CodingExperiencePage extends StatelessWidget {
+class CodingExperiencePage extends StatefulWidget {
   const CodingExperiencePage({super.key});
 
+  @override
+  State<CodingExperiencePage> createState() => _CodingExperiencePageState();
+}
+
+class _CodingExperiencePageState extends State<CodingExperiencePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,22 +34,44 @@ class CodingExperiencePage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Container(
-            //implement github api to get stats
+            //implement choice of what code experience to view, real coding examples or leetcode
             color: const Color(0xff28112B),
             width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height / 5,
+            height: MediaQuery.of(context).size.height / 10,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                TextButton(
+                    onPressed: (() {
+                      _professionalColor = Colors.white;
+                      _leetCodeColor = Colors.grey;
+                      setState(() {});
+                    }),
+                    child: Text(
+                      'Professional',
+                      style: TextStyle(color: _professionalColor, fontSize: 15),
+                    )),
+                TextButton(
+                    onPressed: (() {
+                      _leetCodeColor = Colors.white;
+                      _professionalColor = Colors.grey;
+                      setState(() {});
+                    }),
+                    child: Text(
+                      'Leetcode',
+                      style: TextStyle(color: _leetCodeColor, fontSize: 15),
+                    )),
+              ],
+            ),
           ),
           Expanded(
-            child: Center(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const ScrollableCodeSelector(),
-                  CodeDisplayWidget(
-                    index: selected,
-                  )
-                ],
-              ),
+            child: Row(
+              children: [
+                const ScrollableCodeSelector(),
+                CodeDisplayWidget(
+                  index: selected,
+                )
+              ],
             ),
           ),
         ],

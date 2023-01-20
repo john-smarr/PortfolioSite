@@ -1,6 +1,5 @@
 //import 'dart:html';
 import 'package:animated_background/animated_background.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:js_portfolio_flutter/pages/resume_page.dart';
 import 'package:js_portfolio_flutter/pages/coding_experience_page.dart';
