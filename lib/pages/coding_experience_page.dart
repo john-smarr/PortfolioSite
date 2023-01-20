@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:js_portfolio_flutter/models/accomplishment_display.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
 
 var selected = 0;
 var imgPath;
@@ -16,23 +17,36 @@ class CodingExperiencePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          backgroundColor: Colors.white10,
+          backgroundColor: const Color(0xff28112B),
           leading: IconButton(
               onPressed: (() {
                 Navigator.of(context).pop();
               }),
               icon: const Icon(Icons.arrow_back_rounded))),
-      backgroundColor: Colors.blueGrey,
-      body: Center(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            const ScrollableCodeSelector(),
-            CodeDisplayWidget(
-              index: selected,
-            )
-          ],
-        ),
+      backgroundColor: const Color(0xff28112B),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Container(
+            //implement github api to get stats
+            color: const Color(0xff28112B),
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height / 5,
+          ),
+          Expanded(
+            child: Center(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const ScrollableCodeSelector(),
+                  CodeDisplayWidget(
+                    index: selected,
+                  )
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -52,8 +66,8 @@ class _ScrollableCodeSelectorState extends State<ScrollableCodeSelector> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.white60,
-      height: MediaQuery.of(context).size.height,
+      color: const Color(0xff28112B),
+      //height: MediaQuery.of(context).size.height,
       width: 1 / 3 * MediaQuery.of(context).size.width,
       child: CustomScrollView(
         slivers: <Widget>[
@@ -69,8 +83,8 @@ class _ScrollableCodeSelectorState extends State<ScrollableCodeSelector> {
                               width: 1,
                               style: BorderStyle.solid),
                           borderRadius: BorderRadius.circular(12))),
-                      backgroundColor:
-                          MaterialStateProperty.all<Color>(Colors.blueGrey)),
+                      backgroundColor: MaterialStateProperty.all<Color>(
+                          const Color(0xff2B2D42))),
                   onPressed: () {
                     setState(() {
                       CodeDisplayWidget(
@@ -123,8 +137,7 @@ class _CodeDisplayWidgetState extends State<CodeDisplayWidget> {
 
   @override
   Widget build(BuildContext context) {
-    setState(() {
-    });
+    setState(() {});
     return Expanded(
       child: Container(
         color: Colors.white,

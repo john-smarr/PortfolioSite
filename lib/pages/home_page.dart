@@ -1,5 +1,6 @@
 //import 'dart:html';
 import 'package:animated_background/animated_background.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:js_portfolio_flutter/pages/resume_page.dart';
 import 'package:js_portfolio_flutter/pages/coding_experience_page.dart';
@@ -19,7 +20,6 @@ class HomePage extends StatelessWidget {
             Container(
               height: 1 / 10 * MediaQuery.of(context).size.height,
               alignment: Alignment.topLeft,
-              //child: const OpeningParagraph(),
             ),
             Padding(
               padding: const EdgeInsets.all(10),
@@ -36,23 +36,6 @@ class HomePage extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-}
-
-class OpeningParagraph extends StatelessWidget {
-  const OpeningParagraph({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 8, top: 12),
-      child: RichText(
-          text: const TextSpan(children: [
-        TextSpan(
-            text: 'Hello and welcome to John Smarr\'s portfolio site!',
-            style: TextStyle(color: Colors.white, fontSize: 40))
-      ])),
     );
   }
 }
@@ -90,13 +73,14 @@ class _OrientationDesignState extends State<OrientationDesign> {
             padding: const EdgeInsets.only(left: 8),
             child: ConstrainedBox(
                 constraints: BoxConstraints(
+                    maxHeight: MediaQuery.of(context).size.height / 2,
                     maxWidth: MediaQuery.of(context).size.width / 4),
-                child: const ResumeBookWidget()),
+                child: const ResumeRocketButton()),
           ),
           ConstrainedBox(
               constraints: BoxConstraints(
                   maxWidth: MediaQuery.of(context).size.width / 3),
-              child: const CodingExperienceBookWidget())
+              child: const CodingExperienceRocketButton())
         ],
       );
     } else {
@@ -104,26 +88,35 @@ class _OrientationDesignState extends State<OrientationDesign> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Padding(
-            padding: const EdgeInsets.only(bottom: 8),
+            padding: const EdgeInsets.only(bottom: 50),
             child: ConstrainedBox(
                 constraints: BoxConstraints(
                     maxWidth: MediaQuery.of(context).size.width / 4,
                     maxHeight: MediaQuery.of(context).size.height / 4),
-                child: const ResumeBookWidget()),
+                child: const ResumeRocketButton()),
           ),
           ConstrainedBox(
               constraints: BoxConstraints(
+                  minHeight: MediaQuery.of(context).size.height / 5,
                   maxWidth: MediaQuery.of(context).size.width / 3,
                   maxHeight: MediaQuery.of(context).size.height / 4),
-              child: const CodingExperienceBookWidget())
+              child: const CodingExperienceRocketButton())
         ],
       );
     }
   }
 }
 
-class ResumeBookWidget extends StatelessWidget {
-  const ResumeBookWidget({super.key});
+class ResumeRocketButton extends StatefulWidget {
+  const ResumeRocketButton({super.key});
+
+  @override
+  State<ResumeRocketButton> createState() => _ResumeRocketButtonState();
+}
+
+class _ResumeRocketButtonState extends State<ResumeRocketButton>
+    with TickerProviderStateMixin {
+  ParticleOptions particles = ParticleOptions();
   @override
   Widget build(BuildContext context) {
     return TextButton(
@@ -133,14 +126,13 @@ class ResumeBookWidget extends StatelessWidget {
       },
       child: Image.asset(
         'assets/images/Resume_Rocket.png',
-        //width: MediaQuery.of(context).size.width / 3,
       ),
     );
   }
 }
 
-class CodingExperienceBookWidget extends StatelessWidget {
-  const CodingExperienceBookWidget({super.key});
+class CodingExperienceRocketButton extends StatelessWidget {
+  const CodingExperienceRocketButton({super.key});
 
   @override
   Widget build(BuildContext context) {
