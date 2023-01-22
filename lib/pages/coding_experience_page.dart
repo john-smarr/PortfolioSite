@@ -10,6 +10,7 @@ void main() => runApp(const ProviderScope(child: CodingExperiencePage()));
 final imageProvider = StateNotifierProvider((ref) => imgPath);
 Color _professionalColor = Colors.grey;
 Color _leetCodeColor = Colors.white;
+Widget _selectedWidget = const LeetCodeDisplayWidget();
 
 class CodingExperiencePage extends StatefulWidget {
   const CodingExperiencePage({super.key});
@@ -45,6 +46,7 @@ class _CodingExperiencePageState extends State<CodingExperiencePage> {
                     onPressed: (() {
                       _professionalColor = Colors.white;
                       _leetCodeColor = Colors.grey;
+                      _selectedWidget = const ProfessionalExperienceWidget();
                       setState(() {});
                     }),
                     child: Text(
@@ -55,6 +57,7 @@ class _CodingExperiencePageState extends State<CodingExperiencePage> {
                     onPressed: (() {
                       _leetCodeColor = Colors.white;
                       _professionalColor = Colors.grey;
+                      _selectedWidget = const LeetCodeDisplayWidget();
                       setState(() {});
                     }),
                     child: Text(
@@ -64,16 +67,7 @@ class _CodingExperiencePageState extends State<CodingExperiencePage> {
               ],
             ),
           ),
-          Expanded(
-            child: Row(
-              children: [
-                const ScrollableCodeSelector(),
-                CodeDisplayWidget(
-                  index: selected,
-                )
-              ],
-            ),
-          ),
+          _selectedWidget
         ],
       ),
     );
@@ -114,13 +108,8 @@ class _ScrollableCodeSelectorState extends State<ScrollableCodeSelector> {
                       backgroundColor: MaterialStateProperty.all<Color>(
                           const Color(0xff2B2D42))),
                   onPressed: () {
-                    setState(() {
-                      CodeDisplayWidget(
-                        index: index,
-                      );
-                    });
                     selected = index;
-                    //_ChangeAccomplishment(index);
+                    setState(() {});
                     Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
@@ -146,33 +135,56 @@ class _ScrollableCodeSelectorState extends State<ScrollableCodeSelector> {
   }
 }
 
-class CodeDisplayWidget extends StatefulWidget {
-  final int index;
-  const CodeDisplayWidget({super.key, required this.index});
+class LeetCodeDisplayWidget extends StatefulWidget {
+  const LeetCodeDisplayWidget({super.key});
 
   @override
-  State<CodeDisplayWidget> createState() => _CodeDisplayWidgetState();
+  State<LeetCodeDisplayWidget> createState() => _LeetCodeDisplayWidgetState();
 }
 
-class _CodeDisplayWidgetState extends State<CodeDisplayWidget> {
+class _LeetCodeDisplayWidgetState extends State<LeetCodeDisplayWidget> {
   final accomplishments = Accomplishment.fetchAll();
 
   String _selectImage() {
-    String imgPath = accomplishments[widget.index].getImagePath;
+    String imgPath = accomplishments[selected].getImagePath;
     setState(() {});
     return imgPath;
   }
 
   @override
   Widget build(BuildContext context) {
-    setState(() {});
     return Expanded(
-      child: Container(
-        color: Colors.white,
-        child: Image.asset(_selectImage()),
-        // width: MediaQuery.of(context).size.width,
-        // height: MediaQuery.of(context).size.height,
+      child: Row(
+        children: [
+          const ScrollableCodeSelector(),
+          Expanded(
+            child: Container(
+              color: Colors.white,
+              child: Image.asset(_selectImage()),
+              // width: MediaQuery.of(context).size.width,
+              // height: MediaQuery.of(context).size.height,
+            ),
+          ),
+        ],
       ),
+    );
+  }
+}
+
+class ProfessionalExperienceWidget extends StatefulWidget {
+  const ProfessionalExperienceWidget({super.key});
+
+  @override
+  State<ProfessionalExperienceWidget> createState() =>
+      _ProfessionalExperienceWidgetState();
+}
+
+class _ProfessionalExperienceWidgetState
+    extends State<ProfessionalExperienceWidget> {
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: Container(color: Colors.black),
     );
   }
 }
