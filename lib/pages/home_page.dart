@@ -3,6 +3,7 @@ import 'package:animated_background/animated_background.dart';
 import 'package:flutter/material.dart';
 import 'package:js_portfolio_flutter/pages/resume_page.dart';
 import 'package:js_portfolio_flutter/pages/coding_experience_page.dart';
+import 'package:simple_animations/simple_animations.dart';
 // import 'package:flutter/src/widgets/container.dart';
 // import 'package:flutter/src/widgets/framework.dart';
 
@@ -118,14 +119,19 @@ class _ResumeRocketButtonState extends State<ResumeRocketButton>
   ParticleOptions particles = ParticleOptions();
   @override
   Widget build(BuildContext context) {
-    return TextButton(
-      onPressed: () {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const ResumePage()));
-      },
-      child: Image.asset(
-        'assets/images/Resume_Rocket.png',
-      ),
+    return Column(
+      children: [
+        TextButton(
+          onPressed: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const ResumePage()));
+          },
+          child: Image.asset(
+            'assets/images/Resume_Rocket.png',
+          ),
+        ),
+        RocketParticles()
+      ],
     );
   }
 }
@@ -179,5 +185,34 @@ class _AnimatedHomeBackgroundState extends State<AnimatedHomeBackground>
         child: widget.w,
       ),
     );
+  }
+}
+
+class RocketParticles extends StatefulWidget {
+  const RocketParticles({super.key});
+
+  @override
+  State<RocketParticles> createState() => _RocketParticlesState();
+}
+
+class _RocketParticlesState extends State<RocketParticles> {
+  var posTween = Tween<double>(begin: -50.0, end: 50.0);
+  @override
+  Widget build(BuildContext context) {
+    return PlayAnimationBuilder<double>(
+        curve: Curves.easeInOutSine,
+        duration: const Duration(seconds: 5),
+        tween: posTween,
+        builder: (context, value, _) {
+          return Transform.translate(
+            offset: Offset(0, value),
+            child: _,
+          );
+        },
+        child: Container(
+            height: 20,
+            width: 20,
+            decoration:
+                BoxDecoration(shape: BoxShape.circle, color: Colors.white)));
   }
 }
