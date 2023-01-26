@@ -14,26 +14,28 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.blue,
-      body: AnimatedHomeBackground(
-        w: Column(
-          children: [
-            Container(
-              height: 1 / 10 * MediaQuery.of(context).size.height,
-              alignment: Alignment.topLeft,
-            ),
-            Padding(
-              padding: const EdgeInsets.all(10),
-              child: Container(
-                color: Colors.black,
+      body: AnimationDeveloperTools(
+        child: AnimatedHomeBackground(
+          w: Column(
+            children: [
+              Container(
+                height: 1 / 10 * MediaQuery.of(context).size.height,
+                alignment: Alignment.topLeft,
               ),
-            ),
-            Container(
-              height: 1 / 1.5 * MediaQuery.of(context).size.height,
-              alignment: Alignment.center,
-              color: Colors.transparent,
-              child: const OrientationDesign(),
-            )
-          ],
+              Padding(
+                padding: const EdgeInsets.all(10),
+                child: Container(
+                  color: Colors.black,
+                ),
+              ),
+              Container(
+                height: 1 / 1.5 * MediaQuery.of(context).size.height,
+                alignment: Alignment.center,
+                color: Colors.transparent,
+                child: const OrientationDesign(),
+              )
+            ],
+          ),
         ),
       ),
     );
@@ -196,23 +198,31 @@ class RocketParticles extends StatefulWidget {
 }
 
 class _RocketParticlesState extends State<RocketParticles> {
-  var posTween = Tween<double>(begin: -50.0, end: 50.0);
+  var _posTween = Tween<double>(begin: -19.0, end: 14.0);
+  var _currentOpacity = 1.0;
+
   @override
   Widget build(BuildContext context) {
-    return PlayAnimationBuilder<double>(
+    return LoopAnimationBuilder<double>(
+        //developerMode: true,
         curve: Curves.easeInOutSine,
-        duration: const Duration(seconds: 5),
-        tween: posTween,
+        duration: const Duration(seconds: 2),
+        tween: _posTween,
         builder: (context, value, _) {
           return Transform.translate(
             offset: Offset(0, value),
             child: _,
           );
         },
-        child: Container(
-            height: 20,
-            width: 20,
-            decoration:
-                BoxDecoration(shape: BoxShape.circle, color: Colors.white)));
+        child: AnimatedOpacity(
+          opacity: _currentOpacity,
+          duration: const Duration(seconds: 2),
+          child: Container(
+              height: 10,
+              width: 20,
+              decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Color.fromRGBO(255, 255, 255, 1))),
+        ));
   }
 }
