@@ -238,12 +238,12 @@ class ContactPageButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton(
         onPressed: (() {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => ContactPage()));
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => AboutContactPage()));
         }),
         child: Icon(
           Icons.card_membership,
-          size: 100,
+          size: 250,
           color: Colors.white,
         ));
   }
