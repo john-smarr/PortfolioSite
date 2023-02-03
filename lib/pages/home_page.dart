@@ -2,6 +2,7 @@
 import 'package:animated_background/animated_background.dart';
 import 'package:flutter/material.dart';
 import 'package:js_portfolio_flutter/pages/resume_page.dart';
+import 'package:js_portfolio_flutter/pages/contact_page.dart';
 import 'package:js_portfolio_flutter/pages/coding_experience_page.dart';
 import 'package:simple_animations/simple_animations.dart';
 // import 'package:flutter/src/widgets/container.dart';
@@ -82,7 +83,8 @@ class _OrientationDesignState extends State<OrientationDesign> {
           ConstrainedBox(
               constraints: BoxConstraints(
                   maxWidth: MediaQuery.of(context).size.width / 3),
-              child: const CodingExperienceRocketButton())
+              child: const CodingExperienceRocketButton()),
+          ContactPageButton()
         ],
       );
     } else {
@@ -102,7 +104,8 @@ class _OrientationDesignState extends State<OrientationDesign> {
                   minHeight: MediaQuery.of(context).size.height / 5,
                   maxWidth: MediaQuery.of(context).size.width / 3,
                   maxHeight: MediaQuery.of(context).size.height / 4),
-              child: const CodingExperienceRocketButton())
+              child: const CodingExperienceRocketButton()),
+          ContactPageButton()
         ],
       );
     }
@@ -122,6 +125,7 @@ class _ResumeRocketButtonState extends State<ResumeRocketButton>
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         TextButton(
           onPressed: () {
@@ -132,7 +136,7 @@ class _ResumeRocketButtonState extends State<ResumeRocketButton>
             'assets/images/Resume_Rocket.png',
           ),
         ),
-        RocketParticles()
+        //RocketParticles()
       ],
     );
   }
@@ -223,6 +227,24 @@ class _RocketParticlesState extends State<RocketParticles> {
               decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   color: Color.fromRGBO(255, 255, 255, 1))),
+        ));
+  }
+}
+
+class ContactPageButton extends StatelessWidget {
+  const ContactPageButton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return TextButton(
+        onPressed: (() {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => ContactPage()));
+        }),
+        child: Icon(
+          Icons.card_membership,
+          size: 100,
+          color: Colors.white,
         ));
   }
 }
