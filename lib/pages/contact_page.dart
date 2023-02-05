@@ -41,7 +41,7 @@ class AboutContactPage extends StatelessWidget {
             width: MediaQuery.of(context).size.width,
             child: Center(
               child: Text(
-                'This is John Smarr\'s portfolio site, I hope you are having a great day! If you need to contact me please check use any of the options below.',
+                'Hello my name is John Smarr, I am a software developer with a  strong emphasis on cloud computing. If you need to contact me please check use any of the options below.',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     color: Colors.white,
@@ -51,7 +51,7 @@ class AboutContactPage extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: MediaQuery.of(context).size.height / 3,
+            height: MediaQuery.of(context).size.height / 5,
             width: MediaQuery.of(context).size.width,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -73,6 +73,22 @@ class AboutContactPage extends StatelessWidget {
                       icon: Image.asset(
                         'assets/images/LI-Logo.png',
                       )),
+                )
+              ],
+            ),
+          ),
+          SizedBox(
+            height: MediaQuery.of(context).size.height / 5,
+            width: MediaQuery.of(context).size.width,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Text(
+                  'john.smarr97@gmail.com',
+                  style: TextStyle(
+                      fontSize: 30,
+                      fontFamily: 'RobotoCondensed',
+                      fontWeight: FontWeight.bold),
                 )
               ],
             ),

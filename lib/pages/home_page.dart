@@ -15,28 +15,26 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.blue,
-      body: AnimationDeveloperTools(
-        child: AnimatedHomeBackground(
-          w: Column(
-            children: [
-              Container(
-                height: 1 / 10 * MediaQuery.of(context).size.height,
-                alignment: Alignment.topLeft,
+      body: AnimatedHomeBackground(
+        w: Column(
+          children: [
+            Container(
+              height: 1 / 10 * MediaQuery.of(context).size.height,
+              alignment: Alignment.topLeft,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(10),
+              child: Container(
+                color: Colors.black,
               ),
-              Padding(
-                padding: const EdgeInsets.all(10),
-                child: Container(
-                  color: Colors.black,
-                ),
-              ),
-              Container(
-                height: 1 / 1.5 * MediaQuery.of(context).size.height,
-                alignment: Alignment.center,
-                color: Colors.transparent,
-                child: const OrientationDesign(),
-              )
-            ],
-          ),
+            ),
+            Container(
+              height: 1 / 1.5 * MediaQuery.of(context).size.height,
+              alignment: Alignment.center,
+              color: Colors.transparent,
+              child: const OrientationDesign(),
+            )
+          ],
         ),
       ),
     );
@@ -105,7 +103,12 @@ class _OrientationDesignState extends State<OrientationDesign> {
                   maxWidth: MediaQuery.of(context).size.width / 3,
                   maxHeight: MediaQuery.of(context).size.height / 4),
               child: const CodingExperienceRocketButton()),
-          ContactPageButton()
+          ConstrainedBox(
+              constraints: BoxConstraints(
+                  minHeight: MediaQuery.of(context).size.height / 5,
+                  maxWidth: MediaQuery.of(context).size.width / 3,
+                  maxHeight: MediaQuery.of(context).size.height / 5),
+              child: const ContactPageButton()),
         ],
       );
     }
@@ -237,14 +240,11 @@ class ContactPageButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextButton(
-        onPressed: (() {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => AboutContactPage()));
-        }),
-        child: Icon(
-          Icons.card_membership,
-          size: 250,
-          color: Colors.white,
-        ));
+      onPressed: (() {
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => AboutContactPage()));
+      }),
+      child: Image.asset('assets/images/Contact_Rocket.png'),
+    );
   }
 }
