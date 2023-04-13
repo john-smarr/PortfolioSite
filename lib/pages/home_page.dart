@@ -82,7 +82,11 @@ class _OrientationDesignState extends State<OrientationDesign> {
               constraints: BoxConstraints(
                   maxWidth: MediaQuery.of(context).size.width / 3),
               child: const CodingExperienceRocketButton()),
-          ContactPageButton()
+          ConstrainedBox(
+              constraints: BoxConstraints(
+                  maxHeight: MediaQuery.of(context).size.height / 2,
+                  maxWidth: MediaQuery.of(context).size.width / 4),
+              child: const ContactPageButton()),
         ],
       );
     } else {
@@ -127,20 +131,14 @@ class _ResumeRocketButtonState extends State<ResumeRocketButton>
   ParticleOptions particles = ParticleOptions();
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        TextButton(
-          onPressed: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const ResumePage()));
-          },
-          child: Image.asset(
-            'assets/images/Resume_Rocket.png',
-          ),
-        ),
-        //RocketParticles()
-      ],
+    return TextButton(
+      onPressed: () {
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const ResumePage()));
+      },
+      child: Image.asset(
+        'assets/images/EarthPic.png',
+      ),
     );
   }
 }
@@ -157,7 +155,7 @@ class CodingExperienceRocketButton extends StatelessWidget {
             MaterialPageRoute(
                 builder: (context) => const CodingExperiencePage()));
       },
-      child: Image.asset('assets/images/Coding_Rocket.png'),
+      child: Image.asset('assets/images/MoonPic3.png'),
     );
   }
 }
@@ -244,7 +242,7 @@ class ContactPageButton extends StatelessWidget {
         Navigator.push(context,
             MaterialPageRoute(builder: (context) => AboutContactPage()));
       }),
-      child: Image.asset('assets/images/Contact_Rocket.png'),
+      child: Image.asset('assets/images/PlutoPic.png'),
     );
   }
 }

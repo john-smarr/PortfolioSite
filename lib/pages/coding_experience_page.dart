@@ -9,7 +9,7 @@ void main() => runApp(const ProviderScope(child: CodingExperiencePage()));
 
 final imageProvider = StateNotifierProvider((ref) => imgPath);
 Color _professionalColor = Colors.grey;
-Color _leetCodeColor = Colors.white;
+Color _leetCodeColor = Colors.black;
 Widget _selectedWidget = const LeetCodeDisplayWidget();
 
 class CodingExperiencePage extends StatefulWidget {
@@ -24,19 +24,19 @@ class _CodingExperiencePageState extends State<CodingExperiencePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          backgroundColor: const Color(0xff28112B),
+          backgroundColor: Colors.white10,
           leading: IconButton(
               onPressed: (() {
                 Navigator.of(context).pop();
               }),
               icon: const Icon(Icons.arrow_back_rounded))),
-      backgroundColor: const Color(0xff28112B),
+      backgroundColor: Colors.black,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Container(
             //implement choice of what code experience to view, real coding examples or leetcode
-            color: const Color(0xff28112B),
+            color: Colors.white,
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height / 10,
             child: Row(
@@ -44,25 +44,33 @@ class _CodingExperiencePageState extends State<CodingExperiencePage> {
               children: [
                 TextButton(
                     onPressed: (() {
-                      _professionalColor = Colors.white;
+                      _professionalColor = Colors.black;
                       _leetCodeColor = Colors.grey;
                       _selectedWidget = const ProfessionalExperienceWidget();
                       setState(() {});
                     }),
                     child: Text(
                       'Professional',
-                      style: TextStyle(color: _professionalColor, fontSize: 15),
+                      style: TextStyle(
+                          color: _professionalColor,
+                          fontSize:
+                              10 * MediaQuery.of(context).size.width / 375,
+                          fontFamily: 'StickNoBills'),
                     )),
                 TextButton(
                     onPressed: (() {
-                      _leetCodeColor = Colors.white;
+                      _leetCodeColor = Colors.black;
                       _professionalColor = Colors.grey;
                       _selectedWidget = const LeetCodeDisplayWidget();
                       setState(() {});
                     }),
                     child: Text(
                       'Leetcode',
-                      style: TextStyle(color: _leetCodeColor, fontSize: 15),
+                      style: TextStyle(
+                          color: _leetCodeColor,
+                          fontSize:
+                              10 * MediaQuery.of(context).size.width / 375,
+                          fontFamily: 'StickNoBills'),
                     )),
               ],
             ),
@@ -88,7 +96,7 @@ class _ScrollableCodeSelectorState extends State<ScrollableCodeSelector> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: const Color(0xff28112B),
+      color: Colors.black,
       //height: MediaQuery.of(context).size.height,
       width: 1 / 3 * MediaQuery.of(context).size.width,
       child: CustomScrollView(
@@ -184,8 +192,22 @@ class _ProfessionalExperienceWidgetState
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: Container(color: Colors.black),
+      child: Container(
+        color: Colors.black,
+        child: Column(
+          children: [
+            Text(
+              'Under Construction',
+              style: TextStyle(color: Colors.white, fontSize: 40),
+            ),
+            Icon(
+              Icons.construction,
+              color: Colors.orange,
+              size: 50,
+            )
+          ],
+        ),
+      ),
     );
   }
 }
-

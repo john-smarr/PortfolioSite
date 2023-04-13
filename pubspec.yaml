@@ -84,6 +84,16 @@ flutter:
         - asset: fonts/RobotoCondensed-Italic.ttf
           style: italic
         - asset: fonts/RobotoCondensed-Bold.ttf
+    - family: StickNoBills
+      fonts:
+        - asset: fonts/StickNoBills-VariableFont_wght.ttf
+          weight: 600
+          style: normal
+    - family: TiltPrism
+      fonts:
+        - asset: fonts/TiltPrism-Regular-VariableFont_XROT,YROT.ttf
+          weight: 400
+          style: normal
           #style: bold
   #   - family: Trajan Pro
   #     fonts:
